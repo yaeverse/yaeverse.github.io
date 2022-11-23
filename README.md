@@ -1,4 +1,4 @@
-# yae
+# yaevsese-website
 
 ## Project setup
 ```
