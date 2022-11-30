@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
-    <h1>Welcome to <span class="typing">Yaeverse🦊</span></h1>
+    <h1>
+      Welcome to
+      <span class="typing">
+        {{ title_yaeverse.text }}
+      </span>
+    </h1>
     <p>The open-source hyper-metaverse based on instant messaging. 💬</p>
     <h3>Essential Links</h3>
     <ul>
@@ -29,8 +34,40 @@
 <script>
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
+  data: () => ({
+    title_yaeverse: {
+      text: "",
+      message: "Yaeverse🦊",
+      typeSpeed: 100,
+      backSpeed: 60,
+      loop: true,
+    },
+  }),
+  methods: {
+    typing(target, isBack) {
+      const { text, message, typeSpeed, backSpeed, loop } = target;
+      if (isBack && !loop) {
+        return;
+      } else {
+        target.text = message.substring(0, text.length + (!isBack ? 1 : -1));
+      }
+      isBack =
+        text.length === message.length
+          ? true
+          : text.length === 0
+          ? false
+          : isBack;
+      const speed =
+        text.length + 1 === message.length
+          ? 3_600
+          : isBack
+          ? backSpeed
+          : typeSpeed;
+      setTimeout(() => this.typing(target, isBack), speed);
+    },
+  },
+  mounted() {
+    this.typing(this.title_yaeverse);
   },
 };
 </script>
@@ -52,7 +89,7 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: #b42983;
 }
 
 .typing {
@@ -65,5 +102,24 @@ a {
   border-right: 0.15em solid orange;
   margin: 0 auto;
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
 </style>
