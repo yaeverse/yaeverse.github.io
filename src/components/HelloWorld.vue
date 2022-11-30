@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Welcome to Hyper-Metaverse</h1>
+    <h1>Welcome to <span class="typing">Yaeverse🦊</span></h1>
     <p>The open-source hyper-metaverse based on instant messaging. 💬</p>
     <h3>Essential Links</h3>
     <ul>
@@ -40,15 +40,30 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
+}
+
+.typing {
+  color: #b42983;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  margin: 0 auto;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 </style>
